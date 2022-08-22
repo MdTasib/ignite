@@ -3,6 +3,7 @@ const initialState = {
 	newGames: [],
 	upcoming: [],
 	searched: [],
+	isLoading: true,
 };
 
 const gamesReducer = (state = initialState, action) => {
@@ -13,6 +14,13 @@ const gamesReducer = (state = initialState, action) => {
 				popular: action.payload.popular,
 				newGames: action.payload.newGames,
 				upcoming: action.payload.upcoming,
+				isLoading: false,
+			};
+
+		case "LOADING":
+			return {
+				...state,
+				isLoading: true,
 			};
 
 		default:

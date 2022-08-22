@@ -5,6 +5,10 @@ import { popularGamesURL, newGamesURL, upcomingGamesURL } from "../api";
 
 // LOAD ALL POPULAR GAMES
 const loadGames = () => async dispatch => {
+	dispatch({
+		type: "LOADING",
+	});
+
 	// FETCH DATA
 	const popularData = await axios.get(popularGamesURL());
 	const newGamesData = await axios.get(newGamesURL());

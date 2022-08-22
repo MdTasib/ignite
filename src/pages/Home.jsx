@@ -3,8 +3,10 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import { loadGames } from "../actions/gamesActions";
+import { useParams } from "react-router-dom";
 import Game from "../components/Game";
 import GameDetail from "../components/GameDetail";
+import Spinner from "../components/Spinner";
 
 const Home = () => {
 	// FETCH GAMES DATA
@@ -13,57 +15,70 @@ const Home = () => {
 		dispatch(loadGames());
 	}, [dispatch]);
 
+	// GET GAME ID
+	const { id } = useParams();
+
 	// GET DATA FROM REDUX STORE
-	const { newGames, upcoming, popular } = useSelector(state => state.games);
+	const { newGames, upcoming, popular, isLoading } = useSelector(
+		state => state.games
+	);
+
+	if (isLoading) {
+		return <Spinner />;
+	}
 
 	return (
-		<GameList>
-			<GameDetail />
-			<section>
-				<h2>Upcoming Games</h2>
-				<Games>
-					{upcoming.map(game => (
-						<Game
-							name={game.name}
-							released={game.released}
-							id={game.id}
-							image={game.background_image}
-							key={game.id}
-						/>
-					))}
-				</Games>
-			</section>
+		<>
+			{!isLoading && (
+				<GameList>
+					{id && <GameDetail />}
+					<section>
+						<h2>Upcoming Games</h2>
+						<Games>
+							{upcoming.map(game => (
+								<Game
+									name={game.name}
+									released={game.released}
+									id={game.id}
+									image={game.background_image}
+									key={game.id}
+								/>
+							))}
+						</Games>
+					</section>
 
-			<section>
-				<h2>Popular Games</h2>
-				<Games>
-					{popular.map(game => (
-						<Game
-							name={game.name}
-							released={game.released}
-							id={game.id}
-							image={game.background_image}
-							key={game.id}
-						/>
-					))}
-				</Games>
-			</section>
+					<section>
+						<h2>Popular Games</h2>
+						<Games>
+							{popular.map(game => (
+								<Game
+									name={game.name}
+									released={game.released}
+									id={game.id}
+									image={game.background_image}
+									key={game.id}
+								/>
+							))}
+						</Games>
+					</section>
 
-			<section>
-				<h2>New Games</h2>
-				<Games>
-					{newGames.slice(0, 3).map(game => (
-						<Game
-							name={game.name}
-							released={game.released}
-							id={game.id}
-							image={game.background_image}
-							key={game.id}
-						/>
-					))}
-				</Games>
-			</section>
-		</GameList>
+					<section>
+						<h2>New Games</h2>
+						<Games>
+							{newGames.slice(0, 3).map(game => (
+								<Game
+									name={game.name}
+									released={game.released}
+									id={game.id}
+									image={game.background_image}
+									key={game.id}
+								/>
+							))}
+						</Games>
+					</section>
+				</GameList>
+			)}
+		</>
 	);
 };
 
