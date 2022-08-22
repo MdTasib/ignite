@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import { loadGames } from "../actions/gamesActions";
 import Game from "../components/Game";
+import GameDetail from "../components/GameDetail";
 
 const Home = () => {
 	// FETCH GAMES DATA
@@ -17,6 +18,7 @@ const Home = () => {
 
 	return (
 		<GameList>
+			<GameDetail />
 			<section>
 				<h2>Upcoming Games</h2>
 				<Games>
