@@ -28,13 +28,13 @@ const GlobalStyles = createGlobalStyle`
         color: #333;
     }
     h3{
-        font-size: 1.3rem;
+        font-size: 1rem;
         color: #333;
-        padding: 1.5rem 0rem;
+        padding: 1rem 0rem;
     }
     p{
-        font-size: 1.2rem;
-        line-height: 200%;
+        font-size: .8rem;
+        line-height: 170%;
         color: #696969;
     }
     a{
@@ -43,6 +43,7 @@ const GlobalStyles = createGlobalStyle`
     }
     img{
         display: block;
+        width: 100%;
     }
     input{
         font-weight: bold;

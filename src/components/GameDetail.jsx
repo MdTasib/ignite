@@ -65,7 +65,7 @@ const CardShadow = styled(motion.div)`
 const Detail = styled(motion.div)`
 	width: 80%;
 	border-radius: 1rem;
-	padding: 2rem 5rem;
+	padding: 2rem 4rem;
 	background: white;
 	position: absolute;
 	left: 10%;
@@ -93,19 +93,19 @@ const Platforms = styled(motion.div)`
 	display: flex;
 	justify-content: space-evenly;
 	img {
-		margin-left: 3rem;
+		margin-left: 2rem;
 	}
 `;
 
 const Media = styled(motion.div)`
-	margin-top: 5rem;
+	margin-top: 3rem;
 	img {
 		width: 100%;
 	}
 `;
 
 const Description = styled(motion.div)`
-	margin: 5rem 0rem;
+	margin: 3rem 0rem;
 `;
 
 export default GameDetail;
