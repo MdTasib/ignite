@@ -44,14 +44,15 @@ const upcomingGamesURL = () => `${base_url}${upcoming_games}`;
 const newGamesURL = () => `${base_url}${newGames}`;
 
 // GAME DETAILS
-// https://api.rawg.io/api/games?key=5cd47b7278d94d7e83a19d3b5e7cc8d0&668024
-// https://api.rawg.io/api/games?key=5cd47b7278d94d7e83a19d3b5e7cc8d0&668024/screenshots
+// https://api.rawg.io/api/games/668024?key=5cd47b7278d94d7e83a19d3b5e7cc8d0
 
-const gameDetailsURL = game_id => `${base_url}games?key=${key}&${game_id}`;
+// https://api.rawg.io/api/games/668024/screenshots?key=5cd47b7278d94d7e83a19d3b5e7cc8d0
+
+const gameDetailsURL = game_id => `${base_url}games/${game_id}?key=${key}`;
 
 // GAME SCREENSHOTS
 const gameScreenshotURL = game_id =>
-	`${base_url}games?key=${key}&${game_id}/screenshots`;
+	`${base_url}games/${game_id}/screenshots?key=${key}`;
 
 // SEARCHED GAME
 const searchGameURL = game_name =>
