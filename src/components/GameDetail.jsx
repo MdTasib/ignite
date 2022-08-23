@@ -47,6 +47,20 @@ const GameDetail = ({ id }) => {
 		}
 	};
 
+	// GET STARS
+	const getStars = () => {
+		const stars = [];
+		const rating = Math.floor(game.rating);
+		for (let i = 1; i <= 5; i++) {
+			if (i <= rating) {
+				stars.push(<img alt='star' key={i} src={starFull} />);
+			} else {
+				stars.push(<img alt='star' key={i} src={starEmpty} />);
+			}
+		}
+		return stars;
+	};
+
 	// LOADING SPINNER
 	if (isLoading) {
 		return <Spinner />;
@@ -61,6 +75,7 @@ const GameDetail = ({ id }) => {
 							<div className='rating'>
 								<motion.h3 layoutId={`title ${id}`}>{game.name}</motion.h3>
 								<p>Rating: {game.rating}</p>
+								{getStars()}
 							</div>
 							<Info>
 								<h3>Platforms</h3>
@@ -143,9 +158,10 @@ const Stats = styled(motion.div)`
 	align-items: center;
 	justify-content: space-between;
 	img {
-		width: 2rem;
-		height: 2rem;
+		width: 1.2rem;
+		height: 1.2rem;
 		display: inline;
+		object-fit: cover;
 	}
 `;
 const Info = styled(motion.div)`
