@@ -6,7 +6,7 @@ import { useSelector } from "react-redux";
 import Spinner from "./Spinner";
 import { smallImage } from "../utils/utils";
 
-const GameDetail = () => {
+const GameDetail = ({ id }) => {
 	const { game, screen, isLoading } = useSelector(state => state.detail);
 	const navigate = useNavigate();
 
@@ -27,10 +27,10 @@ const GameDetail = () => {
 		<>
 			{!isLoading && (
 				<CardShadow onClick={exitDetailHandler} className='shadow'>
-					<Detail>
+					<Detail layoutId={id}>
 						<Stats>
 							<div className='rating'>
-								<h3>{game.name}</h3>
+								<motion.h3 layoutId={`title ${id}`}>{game.name}</motion.h3>
 								<p>Rating: {game.rating}</p>
 							</div>
 							<Info>
@@ -43,7 +43,11 @@ const GameDetail = () => {
 							</Info>
 						</Stats>
 						<Media>
-							<img src={smallImage(game.background_image, 1280)} alt='' />
+							<motion.img
+								layoutId={`image ${id}`}
+								src={smallImage(game.background_image, 1280)}
+								alt=''
+							/>
 						</Media>
 						<Description>
 							<p>{game.description_raw}</p>
