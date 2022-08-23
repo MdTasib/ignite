@@ -4,6 +4,7 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { loadDetail } from "../actions/detailAction";
+import { smallImage } from "../utils/utils";
 
 const Game = ({ name, released, id, image }) => {
 	const dispatch = useDispatch();
@@ -17,7 +18,7 @@ const Game = ({ name, released, id, image }) => {
 			<Link to={`/game/${id}`}>
 				<h3>{name}</h3>
 				<p>{released}</p>
-				<img src={image} alt={name} />
+				<img src={smallImage(image, 640)} alt={name} />
 			</Link>
 		</StyledGame>
 	);
