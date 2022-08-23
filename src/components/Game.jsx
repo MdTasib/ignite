@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { loadDetail } from "../actions/detailAction";
 import { smallImage } from "../utils/utils";
+import { popup } from "../utils/animations";
 
 const Game = ({ name, released, id, image }) => {
 	const dispatch = useDispatch();
@@ -14,7 +15,12 @@ const Game = ({ name, released, id, image }) => {
 	};
 
 	return (
-		<StyledGame layoutId={id} onClick={loadDetailHandler}>
+		<StyledGame
+			variants={popup}
+			initial='hidden'
+			animate='show'
+			layoutId={id}
+			onClick={loadDetailHandler}>
 			<Link to={`/game/${id}`}>
 				<motion.h3 layoutId={`title ${id}`}>{name}</motion.h3>
 				<p>{released}</p>

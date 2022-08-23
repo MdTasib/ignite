@@ -7,6 +7,7 @@ import { useParams } from "react-router-dom";
 import Game from "../components/Game";
 import GameDetail from "../components/GameDetail";
 import Spinner from "../components/Spinner";
+import { fadeIn } from "../utils/animations";
 
 const Home = () => {
 	// FETCH GAMES DATA
@@ -30,7 +31,7 @@ const Home = () => {
 	return (
 		<>
 			{!isLoading && (
-				<GameList>
+				<GameList variants={fadeIn} initial='hidden' animate='show'>
 					<AnimateSharedLayout type='crossfade'>
 						<AnimatePresence>{id && <GameDetail id={id} />}</AnimatePresence>
 

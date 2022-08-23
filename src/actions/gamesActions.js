@@ -4,7 +4,7 @@ import {
 	newGamesURL,
 	upcomingGamesURL,
 	searchGameURL,
-} from "../api";
+} from "../utils/api";
 
 // ACTIONS CREATOR
 
