@@ -17,6 +17,19 @@ const gamesReducer = (state = initialState, action) => {
 				isLoading: false,
 			};
 
+		case "FETCH_SEARCHED":
+			return {
+				...state,
+				searched: action.payload.searched,
+				isLoading: false,
+			};
+
+		case "CLEAR_SEARCHED":
+			return {
+				...state,
+				searched: [],
+			};
+
 		case "LOADING":
 			return {
 				...state,

@@ -55,8 +55,9 @@ const gameScreenshotURL = game_id =>
 	`${base_url}games/${game_id}/screenshots?key=${key}`;
 
 // SEARCHED GAME
+// https://api.rawg.io/api/games?key=5cd47b7278d94d7e83a19d3b5e7cc8d0&search=starfield&page_size=9
 const searchGameURL = game_name =>
-	`${base_url}games?search=${game_name}&page_size=9`;
+	`${base_url}games?key=${key}&search=${game_name}&page_size=9`;
 
 export {
 	popularGamesURL,

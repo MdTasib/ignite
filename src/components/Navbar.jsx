@@ -3,16 +3,37 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { motion } from "framer-motion";
 import logo from "../images/logo.svg";
+import { useDispatch } from "react-redux";
+import { searchedGames } from "../actions/gamesActions";
 
 const Navbar = () => {
+	const [textInput, setTextInput] = useState("");
+	const dispatch = useDispatch();
+
+	const handleTextInput = e => setTextInput(e.target.value);
+
+	const handleSearch = e => {
+		e.preventDefault();
+		dispatch(searchedGames(textInput));
+		console.log(textInput);
+		setTextInput("");
+	};
+
+	const handleClearSearch = () => dispatch({ type: "CLEAR_SEARCHED" });
+
 	return (
 		<StyledNav initial='hidden' animate='show'>
-			<Logo>
+			<Logo onClick={handleClearSearch}>
 				<img src={logo} alt='logo' />
 				<h1>Ignite</h1>
 			</Logo>
-			<form className='search'>
-				<input type='text' />
+			<form onSubmit={handleSearch} className='search'>
+				<input
+					value={textInput}
+					onChange={handleTextInput}
+					type='text'
+					required
+				/>
 				<button type='submit'>SEARCH</button>
 			</form>
 		</StyledNav>

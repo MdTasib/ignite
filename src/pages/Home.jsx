@@ -19,7 +19,7 @@ const Home = () => {
 	const { id } = useParams();
 
 	// GET DATA FROM REDUX STORE
-	const { newGames, upcoming, popular, isLoading } = useSelector(
+	const { newGames, upcoming, popular, isLoading, searched } = useSelector(
 		state => state.games
 	);
 
@@ -33,6 +33,26 @@ const Home = () => {
 				<GameList>
 					<AnimateSharedLayout type='crossfade'>
 						<AnimatePresence>{id && <GameDetail id={id} />}</AnimatePresence>
+
+						{searched.length ? (
+							<section>
+								<h2>Searched Games</h2>
+								<Games>
+									{searched.map(game => (
+										<Game
+											name={game.name}
+											released={game.released}
+											id={game.id}
+											image={game.background_image}
+											key={game.id}
+										/>
+									))}
+								</Games>
+							</section>
+						) : (
+							""
+						)}
+
 						<section>
 							<h2>Upcoming Games</h2>
 							<Games>
