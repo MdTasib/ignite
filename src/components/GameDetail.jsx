@@ -6,6 +6,16 @@ import { useSelector } from "react-redux";
 import Spinner from "./Spinner";
 import { smallImage } from "../utils/utils";
 
+// IMAGES
+import playstation from "../images/playstation.svg";
+import steam from "../images/steam.svg";
+import xbox from "../images/xbox.svg";
+import nintendo from "../images/nintendo.svg";
+import apple from "../images/apple.svg";
+import gamepad from "../images/gamepad.svg";
+import starEmpty from "../images/star-empty.png";
+import starFull from "../images/star-full.png";
+
 const GameDetail = ({ id }) => {
 	const { game, screen, isLoading } = useSelector(state => state.detail);
 	const navigate = useNavigate();
@@ -19,6 +29,25 @@ const GameDetail = ({ id }) => {
 		}
 	};
 
+	//GET PLATFORM IMAGES
+	const getPlatform = platform => {
+		switch (platform) {
+			case "PlayStation 4":
+				return playstation;
+			case "Xbox One":
+				return xbox;
+			case "PC":
+				return steam;
+			case "Nintendo Switch":
+				return nintendo;
+			case "iOS":
+				return apple;
+			default:
+				return gamepad;
+		}
+	};
+
+	// LOADING SPINNER
 	if (isLoading) {
 		return <Spinner />;
 	}
@@ -37,7 +66,11 @@ const GameDetail = ({ id }) => {
 								<h3>Platforms</h3>
 								<Platforms>
 									{game.platforms.map(data => (
-										<h3 key={data.platform.id}>{data.platform.name}</h3>
+										<img
+											src={getPlatform(data.platform.name)}
+											key={data.platform.id}
+											alt={data.platform.name}
+										/>
 									))}
 								</Platforms>
 							</Info>
